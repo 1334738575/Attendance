@@ -1,4 +1,9 @@
 # Attendance
+下载 git clone https://github.com/1334738575/Attendance.git
+或者直接 https://github.com/1334738575/Attendance 下载分支
+
+安装依赖（如果需要调试源码） pip install -r requirements.txt
+
 考勤相关文件生成
 使用时，需要输入年份+月份，以及统计好的考勤表；
 Setting下的系统模板.xls为空白，请按照格式自行替换；

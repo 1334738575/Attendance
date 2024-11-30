@@ -90,15 +90,15 @@ class AS_GUI:
         the_month = self.entry_month.get()
         ex_data, infor_dic, now_staff_size = ProcessData(the_year, the_month)
         if now_staff_size==0:
-            label_number = Label(self.as_win, text='文件处理失败，请确保数据正确且确认文件后缀为xls!!!', font=('宋体', 12), width=50, height=1)
+            label_number = Label(self.as_win, text='文件处理失败，请确认数据格式、文件后缀xls、配置文件路径!!!', font=('宋体', 12), width=50, height=1)
             label_number.grid(row=5, column=1, columnspan=3, padx=5, pady=5)
             return
         # self.ex_data = ex_data
         # self.infor_dic = infor_dic
         new_infor, infor_data = self.alignment_data(ex_data, infor_dic)
         ProcessData2(infor_data, new_infor, the_year, the_month, now_staff_size)
-        label_number = Label(self.as_win, text='文件处理完毕!!!', font=('宋体', 12), width=20, height=1)
-        label_number.grid(row=5, column=1, padx=5, pady=5)
+        label_number = Label(self.as_win, text='文件处理完毕!!!', font=('宋体', 12), width=50, height=1)
+        label_number.grid(row=5, column=1, columnspan=3, padx=5, pady=5)
 
     def alignment_data(self, data_in, data_dic):
         global bool_click

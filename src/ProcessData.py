@@ -19,7 +19,7 @@ def read_excel():
     # root = tk.Tk()
     # root.withdraw()
     File_Path = filedialog.askopenfilename()
-    if os.path.isfile(File_Path):
+    if not os.path.isfile(File_Path):
         return []
     data = xlrd.open_workbook(File_Path)
     # data是Excel里的数据
