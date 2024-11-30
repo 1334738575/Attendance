@@ -54,8 +54,11 @@ class AS_GUI:
         self.entry_month = entry_month
 
         # 选择已统计的考勤表
-        button_choose = Button(self.as_win, text="选择已统计的考勤表", command=self.Start_Process, width=25)
-        button_choose.grid(row=2, column=0, columnspan=3, padx=5, pady=5)
+        button_choose = Button(self.as_win, text="选择已统计的考勤表", command=self.Start_Process, width=25, height=3)
+        button_choose.grid(row=2, column=1, columnspan=3, padx=10, pady=5)
+        
+        label_number = Label(self.as_win, text='请选择文件，选择后即处理！', font=('宋体', 12), width=40, height=2)
+        label_number.grid(row=5, column=1, columnspan=3, padx=5, pady=5)
 
         # 输入未知的教工号
         # label_name = Label(self.as_win, text='教工号未知人员：', font=('宋体', 10), width=30, height=1)
@@ -73,12 +76,12 @@ class AS_GUI:
         # button_choose.grid(row=5, column=2, padx=5, pady=5)
 
         # 打开结果
-        button_choose = Button(self.as_win, text="打开结果", command=OpenResult, width=15)
-        button_choose.grid(row=5, column=1, padx=5, pady=5)
+        button_choose = Button(self.as_win, text="打开结果", command=OpenResult, width=15, height=2)
+        button_choose.grid(row=7, column=1, columnspan=3, padx=5, pady=5)
 
         # 关闭
-        button_close = Button(self.as_win, text="关闭", command=self.as_win.destroy, width=20)
-        button_close.grid(row=6, column=0, columnspan=3, padx=5, pady=5)
+        button_close = Button(self.as_win, text="关闭", command=self.as_win.destroy, width=10)
+        button_close.grid(row=8, column=0, columnspan=3, padx=5, pady=5)
 
         self.as_win.mainloop()
 
@@ -86,12 +89,16 @@ class AS_GUI:
         the_year = self.entry_year.get()
         the_month = self.entry_month.get()
         ex_data, infor_dic, now_staff_size = ProcessData(the_year, the_month)
+        if now_staff_size==0:
+            label_number = Label(self.as_win, text='文件处理失败，请确保数据正确且确认文件后缀为xls!!!', font=('宋体', 12), width=50, height=1)
+            label_number.grid(row=5, column=1, columnspan=3, padx=5, pady=5)
+            return
         # self.ex_data = ex_data
         # self.infor_dic = infor_dic
         new_infor, infor_data = self.alignment_data(ex_data, infor_dic)
         ProcessData2(infor_data, new_infor, the_year, the_month, now_staff_size)
         label_number = Label(self.as_win, text='文件处理完毕!!!', font=('宋体', 12), width=20, height=1)
-        label_number.grid(row=8, column=1, padx=5, pady=5)
+        label_number.grid(row=5, column=1, padx=5, pady=5)
 
     def alignment_data(self, data_in, data_dic):
         global bool_click
