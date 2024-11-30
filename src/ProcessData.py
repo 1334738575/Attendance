@@ -1,6 +1,6 @@
-import xlrd  # 读Excel数据用
 import tkinter as tk
 from tkinter import filedialog
+import xlrd  # 读Excel数据用
 from xlutils.copy import copy
 
 import WriteData
@@ -19,7 +19,8 @@ def read_excel():
     # root = tk.Tk()
     # root.withdraw()
     File_Path = filedialog.askopenfilename()
-
+    if not os.path.isfile(File_Path):
+        return []
     data = xlrd.open_workbook(File_Path)
     # data是Excel里的数据
     sheet = data.sheet_by_index(0)
@@ -126,6 +127,8 @@ def update_infor(new_in, now_size):
 
 def ProcessData(the_year, the_month):
     ex_data = read_excel()
+    if len(ex_data)==0:
+        return [], [], 0
     WriteData.create_print(ex_data, the_year, the_month)
     now_staff_size, infor_dic = get_infor()
     return ex_data, infor_dic, now_staff_size
